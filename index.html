@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CASE 0X02 — INTERCEPTED TRANSMISSION</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div>
+      <div class="case-id">FILE // 0X02-DEADDROP</div>
+      <h1>Intercepted Transmission</h1>
+    </div>
+    <div class="stamp">EYES ONLY</div>
+  </header>
+
+  <!-- Briefing -->
+  <div class="panel briefing">
+    <div class="panel-label">Field Notes</div>
+    <p>The messenger insisted that every secret pass through two checkpoints. Anyone who stops after the first gate will never reach the truth.</p>
+  </div>
+
+  <!-- Gate visual -->
+  <div class="panel">
+    <div class="panel-label">Checkpoints</div>
+    <div class="gates" id="gates">
+      <div class="gate" id="gate1">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="shackle" d="M20 26 V18 a12 12 0 0 1 24 0 v8" stroke-width="4" stroke-linecap="round"/>
+          <rect class="body-rect" x="14" y="26" width="36" height="26" rx="4" stroke-width="4"/>
+          <circle class="dot" cx="32" cy="39" r="3.4"/>
+        </svg>
+        <div class="gate-label">Gate 1</div>
+      </div>
+      <div class="gate" id="gate2">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="shackle" d="M20 26 V18 a12 12 0 0 1 24 0 v8" stroke-width="4" stroke-linecap="round"/>
+          <rect class="body-rect" x="14" y="26" width="36" height="26" rx="4" stroke-width="4"/>
+          <circle class="dot" cx="32" cy="39" r="3.4"/>
+        </svg>
+        <div class="gate-label">Gate 2</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ciphertext -->
+  <div class="panel">
+    <div class="panel-label">Intercepted Payload</div>
+    <div class="cipher-box" id="cipherText"></div>
+    <div class="meta-row">
+      <span>ENCODING: <b>UNKNOWN</b></span>
+      <span>GATES DETECTED: <b>2</b></span>
+      <span>SOURCE: <b>messenger.log</b></span>
+    </div>
+  </div>
+
+  <!-- Hint -->
+  <div class="panel">
+    <div class="panel-label">Analyst Notes</div>
+    <button class="hint-toggle" id="hintBtn">Reveal Hint</button>
+    <div class="hint-body" id="hintBody">
+      The payload never touched plaintext directly — it was pushed through the same encoder <i>twice</i> before it left the messenger's hands.
+      That means it needs to be reversed <i>twice</i> too. Run it through a Base64 decoder, look at what comes out, and if it still doesn't
+      read like plain text, that's your cue to decode it <b>again</b>. Two gates, two passes — <code>decode(decode(payload))</code>.
+    </div>
+  </div>
+
+  <!-- Submission -->
+  <div class="panel">
+    <div class="panel-label">Submit Finding</div>
+    <div class="submit-row">
+      <input type="text" id="flagInput" placeholder="enter decoded flag..." autocomplete="off" spellcheck="false">
+      <button class="submit" id="submitBtn">Verify</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <div class="attempts" id="attemptsLabel">Attempts: 0</div>
+  </div>
+
+  <footer>Transmission archived · Do not forward</footer>
+</div>
+
+<!-- Success overlay -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-card">
+    <h2>Both Gates Opened</h2>
+    <p>The second pass peeled away the last layer. The messenger's secret is yours.</p>
+    <div class="success-flag" id="successFlagText"></div>
+    <button class="close-btn" id="closeBtn">Close</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
